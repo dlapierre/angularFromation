@@ -23,4 +23,11 @@ export class StockComponent implements OnInit {
 
     this.selectedArticles.add(a);
   }
+
+  delete(a: Article) {
+    if (!this.selectedArticles.has(a)) {
+      return;
+    }
+    this.articleService.delete(a);
+  }
 }

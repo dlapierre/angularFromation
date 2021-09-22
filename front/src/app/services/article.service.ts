@@ -16,6 +16,8 @@ export class ArticleService {
     this.save();
   }
 
+  delete(a: Article) {}
+
   load() {
     const str = localStorage.getItem('articles');
     if (!str) {
@@ -50,6 +52,4 @@ export class ArticleService {
   save() {
     localStorage.setItem('articles', JSON.stringify(this.articles));
   }
-
-  delete() {}
 }

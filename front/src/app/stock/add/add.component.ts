@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Article } from 'src/app/interfaces/article';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-add',
@@ -14,11 +16,17 @@ export class AddComponent implements OnInit {
     naqtyme: new FormControl(12, [Validators.required]),
   });
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private articleService: ArticleService
+  ) {}
+
+  ngOnInit(): void {}
 
   submit() {
     console.log('tests');
+    this.articleService.addArticle(this.f.value as Article);
     this.router.navigate(['..'], { relativeTo: this.route });
   }
-  ngOnInit(): void {}
 }

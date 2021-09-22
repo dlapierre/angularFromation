@@ -27,5 +27,10 @@ export class ArticleService {
       qty: 5,
     },
   ];
+
   constructor() {}
+
+  addArticle(arg0: Article) {
+    this.articles.push(arg0);
+  }
 }

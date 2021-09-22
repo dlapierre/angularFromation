@@ -25,7 +25,6 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    console.log('tests');
     this.articleService.addArticle(this.f.value as Article);
     this.router.navigate(['..'], { relativeTo: this.route });
   }

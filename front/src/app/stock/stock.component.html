@@ -16,7 +16,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let a of articleService.articles">
+        <tr
+          [class.selected]="selectedArticles.has(a)"
+          (click)="toggle(a)"
+          *ngFor="let a of articleService.articles"
+        >
           <td class="name">{{ a.name }}</td>
           <td class="price">{{ a.price | currency: "EUR" }}</td>
           <td class="Qty">{{ a.qty }}</td>

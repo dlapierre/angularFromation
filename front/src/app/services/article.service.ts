@@ -50,4 +50,6 @@ export class ArticleService {
   save() {
     localStorage.setItem('articles', JSON.stringify(this.articles));
   }
+
+  delete() {}
 }

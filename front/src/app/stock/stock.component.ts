@@ -10,7 +10,7 @@ export class StockComponent implements OnInit {
   articles: Article[] = [
     {
       name: 'Tournevis',
-      price: 2.99,
+      price: 2.9,
       qty: 120,
     },
     {

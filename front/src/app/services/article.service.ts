@@ -5,32 +5,49 @@ import { Article } from '../interfaces/article';
   providedIn: 'root',
 })
 export class ArticleService {
-  articles: Article[] = [
-    {
-      name: 'Tournevis',
-      price: 2.9,
-      qty: 120,
-    },
-    {
-      name: 'Marteau',
-      price: 8.99,
-      qty: 150,
-    },
-    {
-      name: 'Perceuse',
-      price: 82.99,
-      qty: 15,
-    },
-    {
-      name: 'Pelle',
-      price: 15.99,
-      qty: 5,
-    },
-  ];
+  articles!: Article[];
 
-  constructor() {}
+  constructor() {
+    this.load();
+  }
 
   addArticle(arg0: Article) {
     this.articles.push(arg0);
+    this.save();
+  }
+
+  load() {
+    const str = localStorage.getItem('articles');
+    if (!str) {
+      this.articles = [
+        {
+          name: 'Tournevis',
+          price: 2.9,
+          qty: 120,
+        },
+        {
+          name: 'Marteau',
+          price: 8.99,
+          qty: 150,
+        },
+        {
+          name: 'Perceuse',
+          price: 82.99,
+          qty: 15,
+        },
+        {
+          name: 'Pelle',
+          price: 15.99,
+          qty: 5,
+        },
+      ];
+
+      return;
+    }
+    this.articles = JSON.parse(str);
+  }
+
+  save() {
+    localStorage.setItem('articles', JSON.stringify(this.articles));
   }
 }

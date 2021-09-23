@@ -3,9 +3,15 @@
 
   <div class="content">
     <nav>
-      <button routerLink="add">Ajouter</button>
-      <button [hidden]="selectedArticles.size == 0" (click)="remove()">
-        Supprimer
+      <button routerLink="add" aria-label="Add">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <button
+        [hidden]="selectedArticles.size == 0"
+        (click)="remove()"
+        aria-label="Remove"
+      >
+        <fa-icon [icon]="faTrash"></fa-icon>
       </button>
     </nav>
 

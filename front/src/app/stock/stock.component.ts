@@ -14,6 +14,11 @@ export class StockComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  remove() {
+    this.articleService.delete(this.selectedArticles);
+    this.selectedArticles.clear();
+  }
+
   toggle(a: Article) {
     if (this.selectedArticles.has(a)) {
       this.selectedArticles.delete(a);
@@ -22,12 +27,5 @@ export class StockComponent implements OnInit {
     }
 
     this.selectedArticles.add(a);
-  }
-
-  delete(a: Article) {
-    if (!this.selectedArticles.has(a)) {
-      return;
-    }
-    this.articleService.delete(a);
   }
 }

@@ -16,7 +16,18 @@ export class ArticleService {
     this.save();
   }
 
-  delete(a: Article) {}
+  delete(articlesToDelete: Set<Article>) {
+    // articlesToDelete.forEach((a) => {
+    //   const index = this.articles.indexOf(a, 0);
+    //   if (index > -1) {
+    //     this.articles.splice(index, 1);
+    //   }
+    // });
+
+    this.articles = this.articles.filter((a) => !articlesToDelete.has(a));
+
+    this.save();
+  }
 
   load() {
     const str = localStorage.getItem('articles');

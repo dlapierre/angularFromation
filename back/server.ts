@@ -38,13 +38,13 @@ app.post("/api/articles", (req, response) => {
   response.status(201).json(article);
 });
 
-function generateId(): string {
-  return Date.now() + "_" + Math.floor(Math.random() * 1e9);
-}
-
 app.use(express.static(dir));
 app.use(serveIndex(dir, { icons: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+function generateId(): string {
+  return Date.now() + "_" + Math.floor(Math.random() * 1e9);
+}

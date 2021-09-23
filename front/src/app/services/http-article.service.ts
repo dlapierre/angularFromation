@@ -61,7 +61,7 @@ export class HttpArticleService extends ArticleService {
       .get<Article[]>('http://localhost:3000/api/articles')
       .pipe(
         map((articles) => {
-          articles.forEach((a) => (a.name = a.name.toUpperCase()));
+          articles.forEach((a) => (a.name = '***' + a.name.toUpperCase()));
           return articles;
         })
       )

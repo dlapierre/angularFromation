@@ -32,28 +32,7 @@ export class ArticleService {
   load() {
     const str = localStorage.getItem('articles');
     if (!str) {
-      this.articles = [
-        {
-          name: 'Tournevis',
-          price: 2.9,
-          qty: 120,
-        },
-        {
-          name: 'Marteau',
-          price: 8.99,
-          qty: 150,
-        },
-        {
-          name: 'Perceuse',
-          price: 82.99,
-          qty: 15,
-        },
-        {
-          name: 'Pelle',
-          price: 15.99,
-          qty: 5,
-        },
-      ];
+      this.articles = [];
 
       return;
     }

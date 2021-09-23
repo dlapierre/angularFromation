@@ -13,7 +13,7 @@ export class AddComponent implements OnInit {
   f = new FormGroup({
     name: new FormControl('init', [Validators.required]),
     price: new FormControl(2.5, [Validators.required]),
-    naqtyme: new FormControl(12, [Validators.required]),
+    qty: new FormControl(12, [Validators.required]),
   });
 
   constructor(

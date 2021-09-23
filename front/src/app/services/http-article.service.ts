@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ArticleService } from './article.service';
 import { map } from 'rxjs/operators';
 
+const url = 'http://localhost:3000/api/articles';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +13,47 @@ export class HttpArticleService extends ArticleService {
     super();
     console.log('Http service');
     this.refresh();
+  }
+
+  addArticle(a: Article) {
+    super.addArticle(a);
+    this.http.post<void>(url, a).subscribe({
+      next: () => {
+        console.log('success');
+        this.refresh();
+      },
+      complete: () => {
+        console.log('complete');
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  delete(articlesToDelete: Set<Article>) {
+    super.delete(articlesToDelete);
+    const ids = [...articlesToDelete].map((a) => a.id);
+    this.http
+      .delete<void>(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(ids),
+      })
+      .subscribe({
+        next: () => {
+          console.log('success');
+          this.refresh();
+        },
+        complete: () => {
+          console.log('complete');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    this.save();
   }
 
   refresh() {

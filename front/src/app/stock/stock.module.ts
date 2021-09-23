@@ -1,3 +1,4 @@
+import { WidgetModule } from './../widget/widget.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { StockComponent } from './stock.component';
     StockRoutingModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    WidgetModule,
   ],
 })
 export class StockModule {}

@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-  articles!: Article[];
-
+  articles$ = new BehaviorSubject<Article[]>(this.readArticles());
   constructor() {
-    this.load();
+    this.articles$.subscribe({
+      next: (articles) =>
+        localStorage.setItem('articles', JSON.stringify(articles)),
+    });
   }
 
   addArticle(arg0: Article) {
-    this.articles.push(arg0);
-    this.save();
+    this.articles$.value.push(arg0);
+    this.articles$.next(this.articles$.value);
   }
 
   delete(articlesToDelete: Set<Article>) {
@@ -23,23 +26,17 @@ export class ArticleService {
     //     this.articles.splice(index, 1);
     //   }
     // });
-
-    this.articles = this.articles.filter((a) => !articlesToDelete.has(a));
-
-    this.save();
+    const articles = this.articles$.value.filter(
+      (a) => !articlesToDelete.has(a)
+    );
+    this.articles$.next(articles);
   }
 
-  load() {
+  readArticles(): Article[] {
     const str = localStorage.getItem('articles');
     if (!str) {
-      this.articles = [];
-
-      return;
+      return [];
     }
-    this.articles = JSON.parse(str);
-  }
-
-  save() {
-    localStorage.setItem('articles', JSON.stringify(this.articles));
+    return JSON.parse(str);
   }
 }

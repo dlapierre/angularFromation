@@ -18,7 +18,7 @@ export class ArticleTableComponent implements OnInit {
   toggle(a: Article) {
     if (this.selectedArticles.has(a)) {
       this.selectedArticles.delete(a);
-
+      this.articleToggle.emit(this.selectedArticles);
       return;
     }
 

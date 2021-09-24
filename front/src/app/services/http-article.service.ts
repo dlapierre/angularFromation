@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ArticleService } from './article.service';
 import { map } from 'rxjs/operators';
 
-const url = 'http://localhost:3000/api/articles';
+const url = '/api/articles';
 @Injectable({
   providedIn: 'root',
 })
@@ -57,7 +57,7 @@ export class HttpArticleService extends ArticleService {
 
   refresh() {
     this.http
-      .get<Article[]>('http://localhost:3000/api/articles')
+      .get<Article[]>(url)
       .pipe(
         map((articles) => {
           articles.forEach((a) => (a.name = '***' + a.name.toUpperCase()));

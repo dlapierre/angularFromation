@@ -1,11 +1,13 @@
 import cors from "cors";
 import express from "express";
+import { resolve } from "path";
 import serveIndex from "serve-index";
 import { Article } from "./../front/src/app/interfaces/article";
 
 const app = express();
-const port = 3000;
-const dir = "../front/dist/front";
+//conf variable environnement
+const port = process.env.port || 3000;
+const dir = resolve(process.cwd(), "../front/dist/front");
 
 let articles: Article[] = [
   { id: "a1", name: "tournevis", price: 5.99, qty: 120 },
@@ -40,7 +42,9 @@ app.post("/api/articles", (req, response) => {
 
 app.use(express.static(dir));
 app.use(serveIndex(dir, { icons: true }));
-
+app.use((req, res) => {
+  res.sendFile(dir + "/index.html");
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

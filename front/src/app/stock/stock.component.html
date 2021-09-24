@@ -15,7 +15,11 @@
       </button>
     </nav>
 
-    <table>
+    <app-article-table
+      [articles]="articleService.articles$ | async"
+      (articleToggle)="setSelectedArticle($event)"
+    ></app-article-table>
+    <!-- <table>
       <thead>
         <tr>
           <th class="name">Nom</th>
@@ -34,6 +38,6 @@
           <td class="Qty">{{ a.qty }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </main>

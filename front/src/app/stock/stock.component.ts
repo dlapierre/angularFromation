@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Article } from '../interfaces/article';
 import { ArticleService } from '../services/article.service';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -25,13 +25,16 @@ export class StockComponent implements OnInit {
     this.selectedArticles.clear();
   }
 
-  toggle(a: Article) {
-    if (this.selectedArticles.has(a)) {
-      this.selectedArticles.delete(a);
+  // toggle(a: Article) {
+  //   if (this.selectedArticles.has(a)) {
+  //     this.selectedArticles.delete(a);
+  //     return;
+  //   }
 
-      return;
-    }
+  //   this.selectedArticles.add(a);
+  // }
 
-    this.selectedArticles.add(a);
+  setSelectedArticle(selectedArticles: Set<Article>) {
+    this.selectedArticles = selectedArticles;
   }
 }
